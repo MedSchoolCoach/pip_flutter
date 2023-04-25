@@ -747,7 +747,7 @@ class _VideoScrubberState extends State<_VideoScrubber> {
         final RenderBox box = renderObject as RenderBox;
         final Offset tapPos = box.globalToLocal(globalPosition);
         final double relative = tapPos.dx / box.size.width;
-        final Duration position = controller.value.duration! * relative;
+        final Duration position = controller.value.duration * relative;
         controller.seekTo(position);
       }
     }
