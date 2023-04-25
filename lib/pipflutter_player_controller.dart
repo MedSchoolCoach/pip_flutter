@@ -257,10 +257,10 @@ class PipFlutterPlayerController {
 
     ///Build videoPlayerController if null
     if (videoPlayerController == null) {
-      videoPlayerController = VideoPlayerController(
-          bufferingConfiguration:
-              pipFlutterPlayerDataSource.bufferingConfiguration);
-      videoPlayerController?.addListener(_onVideoPlayerChanged);
+      // videoPlayerController = VideoPlayerController(
+      //     bufferingConfiguration:
+      //         pipFlutterPlayerDataSource.bufferingConfiguration);
+      // videoPlayerController?.addListener(_onVideoPlayerChanged);
     }
 
     ///Clear asms tracks
@@ -467,38 +467,38 @@ class PipFlutterPlayerController {
       PipFlutterPlayerDataSource pipFlutterPlayerDataSource) async {
     switch (pipFlutterPlayerDataSource.type) {
       case PipFlutterPlayerDataSourceType.network:
-        await videoPlayerController?.setNetworkDataSource(
-          pipFlutterPlayerDataSource.url,
-          headers: _getHeaders(),
-          useCache: _pipFlutterPlayerDataSource!.cacheConfiguration?.useCache ??
-              false,
-          maxCacheSize:
-              _pipFlutterPlayerDataSource!.cacheConfiguration?.maxCacheSize ??
-                  0,
-          maxCacheFileSize: _pipFlutterPlayerDataSource!
-                  .cacheConfiguration?.maxCacheFileSize ??
-              0,
-          cacheKey: _pipFlutterPlayerDataSource?.cacheConfiguration?.key,
-          showNotification: _pipFlutterPlayerDataSource
-              ?.notificationConfiguration?.showNotification,
-          title: _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
-          author:
-              _pipFlutterPlayerDataSource?.notificationConfiguration?.author,
-          imageUrl:
-              _pipFlutterPlayerDataSource?.notificationConfiguration?.imageUrl,
-          notificationChannelName: _pipFlutterPlayerDataSource
-              ?.notificationConfiguration?.notificationChannelName,
-          overriddenDuration: _pipFlutterPlayerDataSource!.overriddenDuration,
-          formatHint: _getVideoFormat(_pipFlutterPlayerDataSource!.videoFormat),
-          licenseUrl: _pipFlutterPlayerDataSource?.drmConfiguration?.licenseUrl,
-          certificateUrl:
-              _pipFlutterPlayerDataSource?.drmConfiguration?.certificateUrl,
-          drmHeaders: _pipFlutterPlayerDataSource?.drmConfiguration?.headers,
-          activityName: _pipFlutterPlayerDataSource
-              ?.notificationConfiguration?.activityName,
-          clearKey: _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey,
-          videoExtension: _pipFlutterPlayerDataSource!.videoExtension,
-        );
+        // await videoPlayerController?.setNetworkDataSource(
+        //   pipFlutterPlayerDataSource.url,
+        //   headers: _getHeaders(),
+        //   useCache: _pipFlutterPlayerDataSource!.cacheConfiguration?.useCache ??
+        //       false,
+        //   maxCacheSize:
+        //       _pipFlutterPlayerDataSource!.cacheConfiguration?.maxCacheSize ??
+        //           0,
+        //   maxCacheFileSize: _pipFlutterPlayerDataSource!
+        //           .cacheConfiguration?.maxCacheFileSize ??
+        //       0,
+        //   cacheKey: _pipFlutterPlayerDataSource?.cacheConfiguration?.key,
+        //   showNotification: _pipFlutterPlayerDataSource
+        //       ?.notificationConfiguration?.showNotification,
+        //   title: _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
+        //   author:
+        //       _pipFlutterPlayerDataSource?.notificationConfiguration?.author,
+        //   imageUrl:
+        //       _pipFlutterPlayerDataSource?.notificationConfiguration?.imageUrl,
+        //   notificationChannelName: _pipFlutterPlayerDataSource
+        //       ?.notificationConfiguration?.notificationChannelName,
+        //   overriddenDuration: _pipFlutterPlayerDataSource!.overriddenDuration,
+        //   formatHint: _getVideoFormat(_pipFlutterPlayerDataSource!.videoFormat),
+        //   licenseUrl: _pipFlutterPlayerDataSource?.drmConfiguration?.licenseUrl,
+        //   certificateUrl:
+        //       _pipFlutterPlayerDataSource?.drmConfiguration?.certificateUrl,
+        //   drmHeaders: _pipFlutterPlayerDataSource?.drmConfiguration?.headers,
+        //   activityName: _pipFlutterPlayerDataSource
+        //       ?.notificationConfiguration?.activityName,
+        //   clearKey: _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey,
+        //   videoExtension: _pipFlutterPlayerDataSource!.videoExtension,
+        // );
 
         break;
       case PipFlutterPlayerDataSourceType.file:
@@ -510,45 +510,45 @@ class PipFlutterPlayerController {
               "recognize this path.");
         }
 
-        await videoPlayerController?.setFileDataSource(
-            File(pipFlutterPlayerDataSource.url),
-            showNotification: _pipFlutterPlayerDataSource
-                ?.notificationConfiguration?.showNotification,
-            title:
-                _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
-            author:
-                _pipFlutterPlayerDataSource?.notificationConfiguration?.author,
-            imageUrl: _pipFlutterPlayerDataSource
-                ?.notificationConfiguration?.imageUrl,
-            notificationChannelName: _pipFlutterPlayerDataSource
-                ?.notificationConfiguration?.notificationChannelName,
-            overriddenDuration: _pipFlutterPlayerDataSource!.overriddenDuration,
-            activityName: _pipFlutterPlayerDataSource
-                ?.notificationConfiguration?.activityName,
-            clearKey: _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey);
+        // await videoPlayerController?.setFileDataSource(
+        //     File(pipFlutterPlayerDataSource.url),
+        //     showNotification: _pipFlutterPlayerDataSource
+        //         ?.notificationConfiguration?.showNotification,
+        //     title:
+        //         _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
+        //     author:
+        //         _pipFlutterPlayerDataSource?.notificationConfiguration?.author,
+        //     imageUrl: _pipFlutterPlayerDataSource
+        //         ?.notificationConfiguration?.imageUrl,
+        //     notificationChannelName: _pipFlutterPlayerDataSource
+        //         ?.notificationConfiguration?.notificationChannelName,
+        //     overriddenDuration: _pipFlutterPlayerDataSource!.overriddenDuration,
+        //     activityName: _pipFlutterPlayerDataSource
+        //         ?.notificationConfiguration?.activityName,
+        //     clearKey: _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey);
         break;
       case PipFlutterPlayerDataSourceType.memory:
         final file = await _createFile(_pipFlutterPlayerDataSource!.bytes!,
             extension: _pipFlutterPlayerDataSource!.videoExtension);
 
         if (file.existsSync()) {
-          await videoPlayerController?.setFileDataSource(file,
-              showNotification: _pipFlutterPlayerDataSource
-                  ?.notificationConfiguration?.showNotification,
-              title:
-                  _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
-              author: _pipFlutterPlayerDataSource
-                  ?.notificationConfiguration?.author,
-              imageUrl: _pipFlutterPlayerDataSource
-                  ?.notificationConfiguration?.imageUrl,
-              notificationChannelName: _pipFlutterPlayerDataSource
-                  ?.notificationConfiguration?.notificationChannelName,
-              overriddenDuration:
-                  _pipFlutterPlayerDataSource!.overriddenDuration,
-              activityName: _pipFlutterPlayerDataSource
-                  ?.notificationConfiguration?.activityName,
-              clearKey:
-                  _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey);
+          // await videoPlayerController?.setFileDataSource(file,
+          //     showNotification: _pipFlutterPlayerDataSource
+          //         ?.notificationConfiguration?.showNotification,
+          //     title:
+          //         _pipFlutterPlayerDataSource?.notificationConfiguration?.title,
+          //     author: _pipFlutterPlayerDataSource
+          //         ?.notificationConfiguration?.author,
+          //     imageUrl: _pipFlutterPlayerDataSource
+          //         ?.notificationConfiguration?.imageUrl,
+          //     notificationChannelName: _pipFlutterPlayerDataSource
+          //         ?.notificationConfiguration?.notificationChannelName,
+          //     overriddenDuration:
+          //         _pipFlutterPlayerDataSource!.overriddenDuration,
+          //     activityName: _pipFlutterPlayerDataSource
+          //         ?.notificationConfiguration?.activityName,
+          //     clearKey:
+          //         _pipFlutterPlayerDataSource?.drmConfiguration?.clearKey);
           _tempFiles.add(file);
         } else {
           throw ArgumentError("Couldn't create file from memory.");
@@ -580,9 +580,9 @@ class PipFlutterPlayerController {
     _videoEventStreamSubscription?.cancel();
     _videoEventStreamSubscription = null;
 
-    _videoEventStreamSubscription = videoPlayerController
-        ?.videoEventStreamController.stream
-        .listen(_handleVideoEvent);
+    // _videoEventStreamSubscription = videoPlayerController
+    //     ?.videoEventStreamController.stream
+    //     .listen(_handleVideoEvent);
 
     final fullScreenByDefault =
         pipFlutterPlayerConfiguration.fullScreenByDefault;
@@ -825,7 +825,7 @@ class PipFlutterPlayerController {
       if (_wasControlsEnabledBeforePiP) {
         setControlsEnabled(true);
       }
-      videoPlayerController?.refresh();
+      // videoPlayerController?.refresh();
     }
 
     if (_pipFlutterPlayerSubtitlesSource?.asmsIsSegmented == true) {
@@ -942,8 +942,8 @@ class PipFlutterPlayerController {
           "mimeType": track.mimeType,
         }));
 
-    videoPlayerController!
-        .setTrackParameters(track.width, track.height, track.bitrate);
+    // videoPlayerController!
+    //     .setTrackParameters(track.width, track.height, track.bitrate);
     _pipFlutterPlayerAsmsTrack = track;
   }
 
@@ -1229,7 +1229,7 @@ class PipFlutterPlayerController {
     }
 
     _pipFlutterPlayerAsmsAudioTrack = audioTrack;
-    videoPlayerController!.setAudioTrack(audioTrack.label, audioTrack.id);
+    // videoPlayerController!.setAudioTrack(audioTrack.label, audioTrack.id);
   }
 
   ///Enable or disable audio mixing with other sound within device.
@@ -1238,13 +1238,13 @@ class PipFlutterPlayerController {
       throw StateError("The data source has not been initialized");
     }
 
-    videoPlayerController!.setMixWithOthers(mixWithOthers);
+    // videoPlayerController!.setMixWithOthers(mixWithOthers);
   }
 
   ///Clear all cached data. Video player controller must be initialized to
   ///clear the cache.
   Future<void> clearCache() async {
-    return VideoPlayerController.clearCache();
+    // return VideoPlayerController.clearCache();
   }
 
   ///Build headers map that will be used to setup video player controller. Apply
@@ -1275,23 +1275,23 @@ class PipFlutterPlayerController {
     final dataSource = DataSource(
       sourceType: DataSourceType.network,
       uri: pipFlutterPlayerDataSource.url,
-      useCache: true,
-      headers: pipFlutterPlayerDataSource.headers,
-      maxCacheSize: cacheConfig.maxCacheSize,
-      maxCacheFileSize: cacheConfig.maxCacheFileSize,
-      cacheKey: cacheConfig.key,
-      videoExtension: pipFlutterPlayerDataSource.videoExtension,
+      // useCache: true,
+      // headers: pipFlutterPlayerDataSource.headers,
+      // maxCacheSize: cacheConfig.maxCacheSize,
+      // maxCacheFileSize: cacheConfig.maxCacheFileSize,
+      // cacheKey: cacheConfig.key,
+      // videoExtension: pipFlutterPlayerDataSource.videoExtension,
     );
 
-    return VideoPlayerController.preCache(dataSource, cacheConfig.preCacheSize);
+    // return VideoPlayerController.preCache(dataSource, cacheConfig.preCacheSize);
   }
 
   ///Stop pre cache for given [pipFlutterPlayerDataSource]. If there was no pre
   ///cache started for given [pipFlutterPlayerDataSource] then it will be ignored.
   Future<void> stopPreCache(
       PipFlutterPlayerDataSource pipFlutterPlayerDataSource) async {
-    return VideoPlayerController?.stopPreCache(pipFlutterPlayerDataSource.url,
-        pipFlutterPlayerDataSource.cacheConfiguration?.key);
+    // return VideoPlayerController?.stopPreCache(pipFlutterPlayerDataSource.url,
+    //     pipFlutterPlayerDataSource.cacheConfiguration?.key);
   }
 
   /// Add controller internal event.
