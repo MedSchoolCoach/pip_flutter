@@ -19,13 +19,21 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   VideoPlayerApi _api = VideoPlayerApi();
 
   @override
-  Future<void> init() async {
-    _api.initialize();
-    _channel.invokeMethod<void>('init');
+  Future<void> init() {
+    return initialization();
   }
 
   @override
   Future<void> dispose(int textureId) async {
+    return disposal(textureId);
+  }
+
+  Future<void> initialization () async {
+    _api.initialize();
+    _channel.invokeMethod<void>('init');
+  }
+
+  Future<void> disposal (int textureId) async {
     _api.dispose(TextureMessage()..textureId = textureId);
     _channel.invokeMethod<void>(
       'dispose',
