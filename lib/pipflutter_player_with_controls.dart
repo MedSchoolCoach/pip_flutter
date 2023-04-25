@@ -271,14 +271,14 @@ class _PipFlutterPlayerVideoFitWidgetState
   }
 
   void _initialize() {
-    if (controller?.value.initialized == false) {
+    if (controller?.value.isInitialized == false) {
       _initializedListener = () {
         if (!mounted) {
           return;
         }
 
-        if (_initialized != controller!.value.initialized) {
-          _initialized = controller!.value.initialized;
+        if (_initialized != controller!.value.isInitialized) {
+          _initialized = controller!.value.isInitialized;
           setState(() {});
         }
       };
@@ -318,7 +318,7 @@ class _PipFlutterPlayerVideoFitWidgetState
               child: SizedBox(
                 width: controller!.value.size?.width ?? 0,
                 height: controller!.value.size?.height ?? 0,
-                child: VideoPlayer(controller),
+                child: VideoPlayer(controller!),
               ),
             ),
           ),

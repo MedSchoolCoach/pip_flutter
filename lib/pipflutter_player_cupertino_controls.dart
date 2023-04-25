@@ -667,7 +667,7 @@ class _PipFlutterPlayerCupertinoControlsState
     } else {
       cancelAndRestartTimer();
 
-      if (!_controller!.value.initialized) {
+      if (!_controller!.value.isInitialized) {
         if (_pipFlutterPlayerController!
                 .pipFlutterPlayerDataSource?.liveStream ==
             true) {

@@ -729,7 +729,7 @@ class PipFlutterPlayerController {
       PipFlutterPlayerUtils.log("The data source has not been initialized");
       throw StateError("The data source has not been initialized");
     }
-    await videoPlayerController?.setSpeed(speed);
+    await videoPlayerController?.setPlaybackSpeed(speed);
     _postEvent(
       PipFlutterPlayerEvent(
         PipFlutterPlayerEventType.setSpeed,
@@ -809,7 +809,7 @@ class PipFlutterPlayerController {
         ),
       );
     }
-    if (currentVideoPlayerValue.initialized &&
+    if (currentVideoPlayerValue.isInitialized &&
         !_hasCurrentDataSourceInitialized) {
       _hasCurrentDataSourceInitialized = true;
       _postEvent(PipFlutterPlayerEvent(PipFlutterPlayerEventType.initialized));
@@ -873,7 +873,7 @@ class PipFlutterPlayerController {
       PipFlutterPlayerUtils.log("The data source has not been initialized");
       throw StateError("The data source has not been initialized");
     }
-    return videoPlayerController?.value.initialized;
+    return videoPlayerController?.value.isInitialized;
   }
 
   ///Start timer which will trigger next video. Used in playlist. Do not use

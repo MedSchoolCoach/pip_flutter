@@ -659,7 +659,7 @@ class _PipFlutterPlayerMaterialControlsState
     } else {
       cancelAndRestartTimer();
 
-      if (!_controller!.value.initialized) {
+      if (!_controller!.value.isInitialized) {
       } else {
         if (isFinished) {
           _pipFlutterPlayerController!.seekTo(const Duration());

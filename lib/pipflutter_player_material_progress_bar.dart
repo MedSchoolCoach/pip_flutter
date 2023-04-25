@@ -75,7 +75,7 @@ class _VideoProgressBarState
 
     return GestureDetector(
       onHorizontalDragStart: (DragStartDetails details) {
-        if (!controller!.value.initialized || !enableProgressBarDrag) {
+        if (!controller!.value.isInitialized || !enableProgressBarDrag) {
           return;
         }
 
@@ -89,7 +89,7 @@ class _VideoProgressBarState
         }
       },
       onHorizontalDragUpdate: (DragUpdateDetails details) {
-        if (!controller!.value.initialized || !enableProgressBarDrag) {
+        if (!controller!.value.isInitialized || !enableProgressBarDrag) {
           return;
         }
 
@@ -115,7 +115,7 @@ class _VideoProgressBarState
         }
       },
       onTapDown: (TapDownDetails details) {
-        if (!controller!.value.initialized || !enableProgressBarDrag) {
+        if (!controller!.value.isInitialized || !enableProgressBarDrag) {
           return;
         }
         seekToRelativePosition(details.globalPosition);
@@ -213,7 +213,7 @@ class _ProgressBarPainter extends CustomPainter {
       ),
       colors.backgroundPaint,
     );
-    if (!value.initialized) {
+    if (!value.isInitialized) {
       return;
     }
     double playedPartPercent =

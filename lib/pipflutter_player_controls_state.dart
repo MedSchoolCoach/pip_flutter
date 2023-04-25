@@ -166,7 +166,7 @@ abstract class PipFlutterPlayerControlsState<T extends StatefulWidget>
 
   Widget _buildSpeedRow(double value) {
     final bool isSelected =
-        pipFlutterPlayerController!.videoPlayerController!.value.speed == value;
+        pipFlutterPlayerController!.videoPlayerController!.value.playbackSpeed == value;
 
     return PipFlutterPlayerMaterialClickableWidget(
       onTap: () {
